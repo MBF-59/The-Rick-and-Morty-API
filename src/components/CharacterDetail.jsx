@@ -104,7 +104,7 @@ function CharacterDetail({ selectedId, onAddFavourite, isAddedtofavourite }) {
             />
           </button>
         </div>
-        <ul>
+  <ul style={{ maxHeight: "500px", overflowY: "auto" }}>
           {sortedEpisodes.map((item, index) => (
           <li key={item.id}>
             <div>
