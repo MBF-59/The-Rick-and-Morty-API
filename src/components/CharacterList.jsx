@@ -1,4 +1,3 @@
-import React from "react";
 import Loder from "./Loder";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 function CharacterList({ charecters, isLoading,onSelectCharacter,selectedId }) {

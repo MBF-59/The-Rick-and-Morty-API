@@ -52,7 +52,9 @@ function CharacterDetail({ selectedId, onAddFavourite, isAddedtofavourite }) {
       (a, b) => new Date(b.created) - new Date(a.created)
     );
   }
-
+function getFirst20Items(items) {
+  return items.slice(0, 20);
+}
   return (
     <div style={{ flex: 1 }}>
       <div className="character-detail">
@@ -104,7 +106,7 @@ function CharacterDetail({ selectedId, onAddFavourite, isAddedtofavourite }) {
             />
           </button>
         </div>
-        <ul>
+  <ul style={{ maxHeight: "500px", overflowY: "auto" }}>
           {sortedEpisodes.map((item, index) => (
           <li key={item.id}>
             <div>
