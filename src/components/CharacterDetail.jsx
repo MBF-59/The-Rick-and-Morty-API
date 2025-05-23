@@ -114,7 +114,7 @@ function getFirst20Items(items) {
               <strong>{item.name}</strong>
             </div>
             <div className="badge badge--secondary">{item.air_date}</div>
-          </li>
+          </li> 
           ))}
         </ul>
       </div>
