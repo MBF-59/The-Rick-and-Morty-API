@@ -20,7 +20,7 @@ useEffect(() => {
       const { data: episodedata } = await axios.get(
         `https://rickandmortyapi.com/api/episode/${episodeId}`
       );
-      setEpisodes([episodedata]);
+      setEpisodes([episodedata].flat());
       setcharacter(data);
     } catch (error) {
       toast.error( "Error fetching data");
@@ -30,6 +30,12 @@ useEffect(() => {
   }
   if (selectedId) fetchData();
 }, [selectedId]);
+
+
+
+
+
+
 
 if (isLoading) return <Loder />;
 
