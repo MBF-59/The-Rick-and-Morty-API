@@ -9,32 +9,29 @@ function CharacterDetail({ selectedId, onAddFavourite, isAddedtofavourite }) {
   const [episdoes, setEpisodes] = useState(null);
   const [sortBy, setSortby] = useState(true);
   let sortedEpisodes;
-  useEffect(() => {
+useEffect(() => {
+  async function fetchData() {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      // setcharacter([])
-      async function fetchData() {
-        const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character/${selectedId}`
-        );
-        const episodeId = data.episode.map((e) => {
-          return e.split("/").at(-1);
-        });
-        const { data: episodedata } = await axios.get(
-          `https://rickandmortyapi.com/api/episode/${episodeId}`
-        );
-        setEpisodes(episodedata);
-        setcharacter(data);
-      }
-      if (selectedId) fetchData();
+      const { data } = await axios.get(
+        `https://rickandmortyapi.com/api/character/${selectedId}`
+      );
+      const episodeId = data.episode.map((e) => e.split("/").at(-1));
+      const { data: episodedata } = await axios.get(
+        `https://rickandmortyapi.com/api/episode/${episodeId}`
+      );
+      setEpisodes([episodedata]);
+      setcharacter(data);
     } catch (error) {
-      toast(error.response.data.error);
+      toast.error( "Error fetching data");
     } finally {
       setIsLoading(false);
     }
-  }, [selectedId]);
+  }
+  if (selectedId) fetchData();
+}, [selectedId]);
 
-  if (isLoading) return Loder();
+if (isLoading) return <Loder />;
 
   if (!character || !selectedId) {
     return (
